@@ -98,9 +98,14 @@ from the Auth0 response. This service has to be an implementation of<br>
 
 The example of configuration custom user_data_loader service:
 ```yaml
+# config/packages/security.yaml
+security:
     # ...
-    user_data_loader:
-        service: my.security.user.data_loader
+    providers:
+        my_auth0_memory:
+            auth0_memory:
+                user_data_loader:
+                    service: my.security.user.data_loader
     # ...
 ```
 `my.security.user.data_loader` is custom service that implement the interface<br>
@@ -142,14 +147,19 @@ Default map between Auth0 response data and a user class:
 
 Example:
 ```yaml
+# config/packages/security.yaml
+security:
     # ...
-    user_data_loader:
-        default:
-            identifier: email
-            auth0_key: sub
-            map_options:
-                sub: auth0_user_key
-                picture: avatar
+    providers:
+        my_auth0_memory:
+            auth0_memory:
+                user_data_loader:
+                    default:
+                        identifier: email
+                        auth0_key: sub
+                        map_options:
+                            sub: auth0_user_key
+                            picture: avatar
     # ...
 ```
 
