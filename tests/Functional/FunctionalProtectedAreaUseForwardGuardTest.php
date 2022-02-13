@@ -1,0 +1,36 @@
+<?php
+
+declare(strict_types=1);
+
+/*
+ * This file is part of the Auth0LoginBundle package.
+ *
+ * (c) Roman Levchenko <rlev0109@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Rmlev\Auth0LoginBundle\Tests\Functional;
+
+use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
+
+class FunctionalProtectedAreaUseForwardGuardTest extends FunctionalProtectedAreaTest
+{
+    protected bool $newSecuritySystem = false;
+    protected bool $useForward = true;
+
+    protected static array $kernelOptions = [
+        'security' => 'security_use_forward_guard.yaml'
+    ];
+
+    protected function setUp(): void
+    {
+        if (class_exists(AbstractGuardAuthenticator::class) === false) {
+            /** @phpstan-ignore-next-line  */
+            $this->markTestSkipped(sprintf('Class "%s" not found', AbstractGuardAuthenticator::class));
+        }
+
+        parent::setUp();
+    }
+}

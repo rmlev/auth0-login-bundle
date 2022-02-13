@@ -1,0 +1,8 @@
+services:
+    app_event_listener.success_listener:
+        class: Rmlev\Auth0LoginBundle\Tests\Functional\App\src\EventListener\FailureListener
+        arguments:
+            - '@security.http_utils'
+            - '@request_stack'
+        tags:
+            - { name: kernel.event_listener, event: Rmlev\Auth0LoginBundle\Event\ConnectFailureEvent, method: onConnectFailureEvent }

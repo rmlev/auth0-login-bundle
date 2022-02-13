@@ -1,0 +1,15 @@
+framework:
+    secret: secret
+    annotations:
+        enabled: true
+        cache: "php_array"
+#        file_cache_dir: "%kernel.cache_dir%/annotations"
+#        debug: true
+
+when@test:
+    framework:
+        test: true
+#        session:
+#            storage_id: 'session.storage.mock_file'
+        session:
+            storage_factory_id: session.storage.factory.mock_file

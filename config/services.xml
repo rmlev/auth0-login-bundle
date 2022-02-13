@@ -1,0 +1,110 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="rmlev_auth0_login.connector_auth0_factory.auth0factory"
+                 class="Rmlev\Auth0LoginBundle\Connector\Auth0\Factory\Auth0Factory"/>
+
+        <service id="Rmlev\Auth0LoginBundle\Controller\LoginController"
+                 class="Rmlev\Auth0LoginBundle\Controller\LoginController"
+                 public="true">
+            <argument type="service" id="rmlev_auth0_login.connector_auth0.auth0wrapper"/>
+            <argument type="service" id="rmlev_auth0_login.helper.auth0helper"/>
+        </service>
+
+        <service id="rmlev_auth0_login.helper.auth0options_collection"
+                 class="Rmlev\Auth0LoginBundle\Helper\Auth0OptionsCollection"
+        >
+            <tag name="rmlev_auth0_login_options_collection"/>
+        </service>
+
+        <service id="rmlev_auth0_login.helper.auth0helper"
+                 class="Rmlev\Auth0LoginBundle\Helper\Auth0Helper">
+            <argument type="service" id="security.firewall.map"/>
+            <argument type="service" id="security.http_utils"/>
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="rmlev_auth0_login.helper.auth0options_collection"/>
+            <tag name="rmlev_auth0_login_options_aware"/>
+        </service>
+
+        <service id="rmlev_auth0_login.event_listener.logout_listener"
+                 class="Rmlev\Auth0LoginBundle\EventListener\LogoutListener"
+        >
+            <argument type="service" id="rmlev_auth0_login.helper.auth0logout_handler"/>
+            <tag name="kernel.event_listener"
+                 event="Symfony\Component\Security\Http\Event\LogoutEvent"
+                 method="onLogoutEvent"/>
+        </service>
+
+        <service id="rmlev_auth0_login.helper.auth0logout_handler"
+                 class="Rmlev\Auth0LoginBundle\Helper\Auth0LogoutHandler"
+        >
+            <argument type="service" id="rmlev_auth0_login.connector_auth0.auth0wrapper"/>
+            <argument type="service" id="rmlev_auth0_login.helper.auth0helper"/>
+            <argument type="service" id="security.token_storage"/>
+        </service>
+
+        <service id="rmlev_auth0_login.security_core_logout.auth0logout_success_handler"
+                 class="Rmlev\Auth0LoginBundle\Security\Core\Logout\Auth0LogoutSuccessHandler"
+        >
+            <argument type="service" id="rmlev_auth0_login.helper.auth0logout_handler"/>
+        </service>
+
+        <service id="rmlev_auth0_login.security.authenticator"
+                 class="Rmlev\Auth0LoginBundle\Security\Http\Authenticator\Auth0Authenticator"
+                 abstract="true"
+        >
+            <argument type="service" id="http_kernel"/>
+            <argument type="service" id="rmlev_auth0_login.connector_auth0.auth0wrapper"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="security.http_utils"/>
+            <argument type="service" id="rmlev_auth0_login.helper.auth0helper"/>
+        </service>
+
+        <service id="rmlev_auth0_login.security.user.provider"
+                 class="Rmlev\Auth0LoginBundle\Security\Core\User\Auth0UserProvider"
+        >
+            <argument type="service" id="rmlev_auth0_login.connector_auth0.auth0wrapper"/>
+            <argument type="service" id="rmlev_auth0_login.helper.auth0helper"/>
+<!--            <argument type="service" id="rmlev_auth0_login.helper_auth0response.response_user_data_loader"/>-->
+        </service>
+
+<!--        <service id="rmlev_auth0_login.security.user.provider.default"-->
+<!--                 alias="rmlev_auth0_login.security.user.provider"/>-->
+
+        <service id="rmlev_auth0_login.helper_auth0response.response_user_data_loader"
+                 class="Rmlev\Auth0LoginBundle\ResponseLoader\ResponseUserDataLoader"
+        >
+            <argument type="service" id="property_accessor"/>
+        </service>
+
+<!--        <service id="rmlev_auth0_login.helper_auth0response.response_user_data_loader.default"-->
+<!--                 alias="rmlev_auth0_login.helper_auth0response.response_user_data_loader"/>-->
+
+        <service id="rmlev_auth0_login.security.guard.authenticator"
+                 class="Rmlev\Auth0LoginBundle\Security\Guard\Authenticator\Auth0GuardAuthenticator"
+                 abstract="true"
+        >
+            <argument type="service" id="http_kernel"/>
+            <argument type="service" id="rmlev_auth0_login.connector_auth0.auth0wrapper"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="security.http_utils"/>
+            <argument type="service" id="rmlev_auth0_login.helper.auth0helper"/>
+        </service>
+
+        <service id="rmlev_auth0_login.connector_auth0.auth0wrapper" class="Rmlev\Auth0LoginBundle\Connector\Auth0\Auth0Wrapper">
+            <argument type="service" id="rmlev_auth0_login.connector_auth0_factory.auth0factory"/>
+        </service>
+
+        <service id="rmlev_auth0_login.security_core_user.entity_user_provider" class="Rmlev\Auth0LoginBundle\Security\Core\User\EntityUserProvider">
+            <argument type="service" id="doctrine" on-invalid="null"/>
+            <argument type="service" id="rmlev_auth0_login.connector_auth0.auth0wrapper"/>
+            <argument type="service" id="rmlev_auth0_login.helper.auth0helper"/>
+            <argument type="service" id="rmlev_auth0_login.helper_auth0response.response_user_data_loader"/>
+        </service>
+
+    </services>
+</container>

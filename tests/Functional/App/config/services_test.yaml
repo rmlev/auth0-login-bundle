@@ -1,0 +1,20 @@
+services:
+    Rmlev\Auth0LoginBundle\Tests\Functional\App\src\Controller\TestController:
+        public: true
+        arguments:
+            - '@security.token_storage'
+            - '@security.authorization_checker'
+
+#    rmlev_auth0_login.connector_auth0.auth0wrapper:
+#        class: Rmlev\Auth0LoginBundle\Tests\Functional\App\src\Connector\Auth0\StubConnector
+#        arguments:
+#            $userData:
+#                email: stub@example.com
+#                nickname: stub
+#                name: stub@example.com
+#                email_verified: true
+#                sub: abcd.123
+#                picture: 'https://stub.avatar.com/avatar/12345.png'
+#            $idToken: idToken.stub
+#            $accessToken: accessToken.stub
+#            $refreshToken: ~

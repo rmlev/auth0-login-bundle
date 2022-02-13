@@ -1,0 +1,62 @@
+app_homepage:
+    path: /
+    controller: Rmlev\Auth0LoginBundle\Tests\Functional\App\src\Controller\TestController::homepageAction
+
+app_protected_area:
+    path: /protected_area
+    controller: Rmlev\Auth0LoginBundle\Tests\Functional\App\src\Controller\TestController::protectedAreaAction
+
+app_success:
+    path: /success_path
+    controller: Rmlev\Auth0LoginBundle\Tests\Functional\App\src\Controller\TestController::successAction
+
+app_event_success:
+    path: /success_event
+    controller: Rmlev\Auth0LoginBundle\Tests\Functional\App\src\Controller\TestController::successEventAction
+
+app_event_failure:
+    path: /failure_event
+    controller: Rmlev\Auth0LoginBundle\Tests\Functional\App\src\Controller\TestController::failureEventAction
+
+app_auth0_server_stub:
+    path: /auth0_server_stub
+    controller: Rmlev\Auth0LoginBundle\Tests\Functional\App\src\Controller\Auth0ServerStubController::auth0ServerStub
+
+app_logout:
+    path: /logout
+
+app_success_logout:
+    path: /logout_redirect
+    controller: Rmlev\Auth0LoginBundle\Tests\Functional\App\src\Controller\TestController::successLogoutAction
+
+app_failure:
+    path: /failure_path
+    controller: Rmlev\Auth0LoginBundle\Tests\Functional\App\src\Controller\TestController::onFailureAction
+
+stub1_callback:
+    path: /stub1/callback
+
+stub2_callback:
+    path: /stub2/callback
+
+stub1_logout:
+    path: /stub1/logout
+
+stub2_logout:
+    path: /stub2/logout
+
+stub1_success:
+    path: /stub1/success
+    controller: Rmlev\Auth0LoginBundle\Tests\Functional\App\src\Controller\TestController::stub1SuccessAction
+
+stub2_success:
+    path: /stub2/success
+    controller: Rmlev\Auth0LoginBundle\Tests\Functional\App\src\Controller\TestController::stub2SuccessAction
+
+stub1_on_logout:
+    path: /stub1/onlogout
+    controller: Rmlev\Auth0LoginBundle\Tests\Functional\App\src\Controller\TestController::stub1OnLogoutAction
+
+stub2_on_logout:
+    path: /stub2/onlogout
+    controller: Rmlev\Auth0LoginBundle\Tests\Functional\App\src\Controller\TestController::stub2OnLogoutAction

@@ -1,0 +1,9 @@
+services:
+    options_collection:
+        class: Rmlev\Auth0LoginBundle\Helper\Auth0OptionsCollection
+        tags: ['rmlev_auth0_login_options_collection']
+
+    options.stub:
+        class: Rmlev\Auth0LoginBundle\Helper\Auth0Options
+        tags:
+            - { name: 'rmlev_auth0_login_options', firewall: 'stub_firewall' }

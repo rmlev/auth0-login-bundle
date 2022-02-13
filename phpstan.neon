@@ -1,0 +1,50 @@
+parameters:
+    level: 5
+    paths:
+        - src/
+        - tests/
+    excludePaths:
+        - src/DependencyInjection/Security/Factory/Auth0AuthenticatorEntryPointFactory.php
+        - src/RmlevAuth0LoginBundle.php
+        - src/DependencyInjection/Security/Factory/Auth0AuthenticatorFactory.php
+        - src/Security/Http/Authenticator/Token/Auth0Token.php
+        - src/EventListener/LogoutListener.php
+        - src/Helper/Auth0LogoutHandler.php
+        - src/Security/Http/Authenticator/Auth0Authenticator.php
+        - src/Security/Guard/Authenticator/Auth0GuardAuthenticator.php
+        - src/Security/Core/Logout/Auth0LogoutSuccessHandler.php
+        - src/Security/Guard/Token/Auth0GuardToken.php
+        - tests/Integration/SecurityAuth0ConfigurationTest.php
+        - tests/DependencyInjection/Security/Factory/BaseFactoryTestCase.php
+        - tests/DependencyInjection/Security/Factory/Auth0AuthenticatorEntryPointFactoryTest.php
+        - tests/DependencyInjection/Security/Factory/Auth0UserProviderFactoryTest.php
+        - tests/Security/Http/Authenticator/Token/Auth0TokenTest.php
+        - tests/Security/Http/Authenticator/Auth0AuthenticatorTest.php
+        - tests/Helper/Auth0LogoutHandlerTest.php
+        - tests/Functional/IntegrationTest.php
+        - tests/Functional/FunctionalSuccessTest.php
+        - tests/Functional/FunctionalSuccessEventTest.php
+        - tests/Functional/FunctionalProtectedAreaEntityProviderTest.php
+        - tests/Functional/FunctionalMultipleFirewallsTest.php
+        - tests/Functional/FunctionalEntityProviderSuccessTest.php
+        - tests/EventListener/LogoutListenerTest.php
+        - tests/DependencyInjection/RmlevAuth0LoginExtensionTest.php
+        - tests/Security/Guard/Token/Auth0GuardTokenTest.php
+        - tests/Security/Guard/Authenticator/Auth0GuardAuthenticatorTest.php
+
+    doctrine:
+        objectManagerLoader: tests/object-manager.php
+
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        -
+            message: '#Method Rmlev\\Auth0LoginBundle\\Tests\\Functional\\App\\AppKernel::configureContainer\(\) is unused.#'
+            path: tests/Functional/App/AppKernel.php
+        -
+            message: '#Method Rmlev\\Auth0LoginBundle\\Tests\\Functional\\App\\AppKernel::configureRoutes\(\) is unused.#'
+            path: tests/Functional/App/AppKernel.php
+        -
+            message: '#Variable \$container might not be defined.#'
+            path: tests/Integration/Fixtures/php/
+
+    checkMissingIterableValueType: false

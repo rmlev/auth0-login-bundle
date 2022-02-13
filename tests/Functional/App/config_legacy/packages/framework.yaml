@@ -1,0 +1,11 @@
+framework:
+    test: true
+    secret: secret
+    session:
+        storage_id: 'session.storage.mock_file'
+    annotations:
+        enabled: true
+        cache: "php_array"
+#        file_cache_dir: "%kernel.cache_dir%/annotations"
+#        debug: true
+

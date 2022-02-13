@@ -1,0 +1,49 @@
+security:
+    providers:
+        stub_auth0_memory:
+            auth0_memory:
+                user_data_loader:
+                    default:
+                        identifier: email
+                        auth0_key: sub
+                        map_options:
+                            sub: auth0_user_key
+                            picture: avatar
+        stub_entity_users:
+            auth0_entity:
+                class: 'Rmlev\Auth0LoginBundle\Tests\Fixtures\Entity\User'
+                property: 'email'
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        stub1:
+            pattern: ^/stub1
+            anonymous: true
+            provider: stub_auth0_memory
+            auth0_login:
+                check_path: stub1_callback
+                login_path: stub1_on_logout
+                default_target_path: /stub1/success
+                failure_path: app_failure
+                logout_redirect_path: stub1_on_logout
+            logout:
+                path: stub1_logout
+
+        stub2:
+            pattern: ^/stub2
+            anonymous: true
+            provider: stub_entity_users
+            auth0_login:
+                check_path: stub2_callback
+                login_path: auth0_authorize
+                default_target_path: /stub2/success
+                failure_path: app_failure
+                logout_redirect_path: stub2_on_logout
+            logout:
+                path: stub2_logout
+
+
+    access_control:
+        - { path: ^/protected_area, roles: ROLE_USER }
