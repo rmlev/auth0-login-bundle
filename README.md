@@ -20,17 +20,17 @@ This bundle supports the following versions of Symfony:
 Installation
 ------------
 
-All the installation instructions are located in the [documentation](https://github.com/rmlev/Auth0LoginBundle/blob/master/docs/1-installation.md).
+All the installation instructions are located in the [documentation](https://github.com/rmlev/auth0-login-bundle/blob/main/docs/1-installation.md).
 
 Documentation
 -------------
 
 The documentation for this bundle is available in the `docs` directory of this bundle:
 
-* Read the [Auth0LoginBundle documentation](https://github.com/rmlev/Auth0LoginBundle/blob/master/docs/index.md)
+* Read the [Auth0LoginBundle documentation](https://github.com/rmlev/auth0-login-bundle/blob/main/docs/index.md)
 
 License
 -------
 
-This bundle is under the MIT license. See the complete [license in the bundle](https://github.com/rmlev/Auth0LoginBundle/blob/master/LICENSE).
+This bundle is under the MIT license. See the complete [license in the bundle](https://github.com/rmlev/auth0-login-bundle/blob/main/LICENSE).
 

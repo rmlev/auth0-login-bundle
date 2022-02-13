@@ -12,6 +12,7 @@ You can create an event listener or event subscriber and set RedirectResponse on
 
 The example of an event subscriber:
 ```php
+// src/EventSubscriber/ConnectSuccessSubscriber.php
 
 // ...
 use Rmlev\Auth0LoginBundle\Event\ConnectSuccessEvent;
