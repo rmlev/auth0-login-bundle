@@ -6,7 +6,8 @@
     "keywords": [
         "oauth",
         "auth0",
-        "security"
+        "security",
+        "authentication"
     ],
     "autoload": {
         "psr-4": {
